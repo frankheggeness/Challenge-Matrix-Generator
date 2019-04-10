@@ -19,20 +19,27 @@ function matrixGenerator(rows, columns) {
     }
     return array;
   }
-  // sort function for first index
-  function insertionSortNested(array) {
-    for (var i = 0; i < array.length; i++) {
-      var placeOnArray = array[i][0];
-      var j = i - 1;
 
-      while (j >= 0 && array[j][0] > placeOnArray) {
-        array[j + 1][0] = array[j][0];
-        j--;
+  // sort function for first index
+
+  function selectionSort(array) {
+    let sorted = array;
+
+    for (let i = 0; i < sorted.length; i++) {
+      let smallest = sorted[i][0];
+      let smallestArray = sorted[i]
+      for (let y = i + 1; y < sorted.length; y++) {
+        if (smallest > sorted[y][0]) {
+          let newSmallest = sorted[y];
+          sorted[y] = smallestArray
+          sorted[i] = newSmallest
+        }
       }
-      array[j + 1][0] = placeOnArray;
+      // sorted[i] = smallest
     }
-    return array;
+    return sorted;
   }
+
   // create array below
   for (let y = 0; y < columns; y++) {
     let innerArray = [];
@@ -45,7 +52,7 @@ function matrixGenerator(rows, columns) {
   }
 
   console.log(outputArray)
-  insertionSortNested(outputArray)
+  selectionSort(outputArray)
   return outputArray;
 }
 
